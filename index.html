@@ -1,9 +1,1067 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kia Motors | Book Your Dream Car</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --kia-red: #D11241;
+            --kia-dark: #1A1A1A;
+            --kia-light: #F5F5F5;
+            --kia-gray: #6C757D;
+            --kia-blue: #0A2E5A;
+            --transition: all 0.3s ease;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--kia-light);
+            color: var(--kia-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--kia-red);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--kia-dark);
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--kia-red);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--kia-red);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background-color: var(--kia-red);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .cta-button:hover {
+            background-color: #b01038;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(209, 18, 65, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1621135802920-133df287f89c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 5%;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .secondary-button {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .secondary-button:hover {
+            background-color: white;
+            color: var(--kia-dark);
+        }
+
+        /* Models Section */
+        .models-section {
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--kia-dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--kia-red);
+        }
+
+        .section-title p {
+            color: var(--kia-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .model-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .model-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .model-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .model-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .model-card:hover .model-image img {
+            transform: scale(1.05);
+        }
+
+        .model-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--kia-red);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .model-info {
+            padding: 25px;
+        }
+
+        .model-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--kia-dark);
+        }
+
+        .model-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--kia-red);
+            margin-bottom: 15px;
+        }
+
+        .model-features {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            gap: 8px;
+        }
+
+        .feature {
+            background-color: var(--kia-light);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--kia-gray);
+        }
+
+        .book-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--kia-red);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .book-btn:hover {
+            background-color: #b01038;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: white;
+            padding: 80px 5%;
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--kia-dark);
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            color: var(--kia-gray);
+        }
+
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Plant Section */
+        .plant-section {
+            padding: 80px 5%;
+            background-color: var(--kia-light);
+        }
+
+        .plant-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .plant-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .plant-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .plant-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--kia-dark);
+        }
+
+        .plant-content p {
+            margin-bottom: 20px;
+            color: var(--kia-gray);
+        }
+
+        /* Support Section */
+        .support-section {
+            padding: 80px 5%;
+            background-color: white;
+        }
+
+        .support-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .support-card {
+            text-align: center;
+            padding: 40px 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            background-color: white;
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .support-icon {
+            font-size: 2.5rem;
+            color: var(--kia-red);
+            margin-bottom: 20px;
+        }
+
+        .support-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--kia-dark);
+        }
+
+        .support-card p {
+            color: var(--kia-gray);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--kia-dark);
+            color: white;
+            padding: 60px 5% 30px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--kia-red);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--kia-red);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            animation: modalFade 0.3s;
+        }
+
+        @keyframes modalFade {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--kia-gray);
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--kia-red);
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            color: var(--kia-dark);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--kia-red);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background-color: #b01038;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-container, .plant-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image, .plant-image {
+                order: -1;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero {
+                padding: 80px 5%;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .models-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Kia_logo3.svg/2560px-Kia_logo3.svg.png" alt="Kia Logo">
+                <h1>Kia Motors</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#models">Models</a></li>
+                    <li><a href="#about">About Kia</a></li>
+                    <li><a href="#plant">Manufacturing</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </nav>
+            <button class="cta-button">Book a Test Drive</button>
+        </div>
+    </header>
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Experience The Future of Mobility</h2>
+            <p>Discover Kia's innovative lineup of vehicles designed for performance, comfort, and sustainability.</p>
+            <div class="hero-buttons">
+                <button class="cta-button">Explore Models</button>
+                <button class="secondary-button">Find a Dealer</button>
+            </div>
+        </div>
+    </section>
 
+    <!-- Models Section -->
+    <section class="models-section" id="models">
+        <div class="section-title">
+            <h2>Kia Models</h2>
+            <p>Explore our diverse range of premium vehicles designed to meet every need and lifestyle</p>
+        </div>
+        <div class="models-grid">
+            <!-- Model 1 -->
+            <div class="model-card">
+                <div class="model-image">
+                    <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kia Seltos">
+                    <div class="model-badge">Bestseller</div>
+                </div>
+                <div class="model-info">
+                    <h3 class="model-name">Kia Seltos</h3>
+                    <div class="model-price">₹10.89 Lakh onwards</div>
+                    <div class="model-features">
+                        <span class="feature">SUV</span>
+                        <span class="feature">Petrol/Diesel</span>
+                        <span class="feature">5 Seater</span>
+                        <span class="feature">Sunroof</span>
+                    </div>
+                    <p>The Kia Seltos combines bold design with advanced technology for an exceptional driving experience.</p>
+                    <button class="book-btn" data-model="Seltos"><i class="fas fa-calendar-check"></i> Book Now</button>
+                </div>
+            </div>
+
+            <!-- Model 2 -->
+            <div class="model-card">
+                <div class="model-image">
+                    <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kia Sonet">
+                    <div class="model-badge">Popular</div>
+                </div>
+                <div class="model-info">
+                    <h3 class="model-name">Kia Sonet</h3>
+                    <div class="model-price">₹7.49 Lakh onwards</div>
+                    <div class="model-features">
+                        <span class="feature">Compact SUV</span>
+                        <span class="feature">Petrol/Diesel</span>
+                        <span class="feature">5 Seater</span>
+                        <span class="feature">Bose Audio</span>
+                    </div>
+                    <p>The Sonet offers a perfect blend of style, performance, and features in a compact package.</p>
+                    <button class="book-btn" data-model="Sonet"><i class="fas fa-calendar-check"></i> Book Now</button>
+                </div>
+            </div>
+
+            <!-- Model 3 -->
+            <div class="model-card">
+                <div class="model-image">
+                    <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kia Carens">
+                </div>
+                <div class="model-info">
+                    <h3 class="model-name">Kia Carens</h3>
+                    <div class="model-price">₹10.45 Lakh onwards</div>
+                    <div class="model-features">
+                        <span class="feature">MPV</span>
+                        <span class="feature">Petrol/Diesel</span>
+                        <span class="feature">6/7 Seater</span>
+                        <span class="feature">Family Focus</span>
+                    </div>
+                    <p>The Carens offers premium comfort and versatility for families with its spacious interior.</p>
+                    <button class="book-btn" data-model="Carens"><i class="fas fa-calendar-check"></i> Book Now</button>
+                </div>
+            </div>
+
+            <!-- Model 4 -->
+            <div class="model-card">
+                <div class="model-image">
+                    <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kia EV6">
+                    <div class="model-badge">Electric</div>
+                </div>
+                <div class="model-info">
+                    <h3 class="model-name">Kia EV6</h3>
+                    <div class="model-price">₹60.95 Lakh onwards</div>
+                    <div class="model-features">
+                        <span class="feature">Electric</span>
+                        <span class="feature">SUV</span>
+                        <span class="feature">5 Seater</span>
+                        <span class="feature">Fast Charging</span>
+                    </div>
+                    <p>The EV6 represents Kia's vision for sustainable mobility with cutting-edge electric technology.</p>
+                    <button class="book-btn" data-model="EV6"><i class="fas fa-calendar-check"></i> Book Now</button>
+                </div>
+            </div>
+
+            <!-- Model 5 -->
+            <div class="model-card">
+                <div class="model-image">
+                    <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kia Carnival">
+                    <div class="model-badge">Luxury</div>
+                </div>
+                <div class="model-info">
+                    <h3 class="model-name">Kia Carnival</h3>
+                    <div class="model-price">₹29.99 Lakh onwards</div>
+                    <div class="model-features">
+                        <span class="feature">Premium MPV</span>
+                        <span class="feature">Diesel</span>
+                        <span class="feature">7/8 Seater</span>
+                        <span class="feature">VIP Lounge</span>
+                    </div>
+                    <p>The Carnival redefines luxury and space with its premium features and comfortable seating.</p>
+                    <button class="book-btn" data-model="Carnival"><i class="fas fa-calendar-check"></i> Book Now</button>
+                </div>
+            </div>
+
+            <!-- Model 6 -->
+            <div class="model-card">
+                <div class="model-image">
+                    <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kia Seltos X-Line">
+                    <div class="model-badge">New</div>
+                </div>
+                <div class="model-info">
+                    <h3 class="model-name">Kia Seltos X-Line</h3>
+                    <div class="model-price">₹18.49 Lakh onwards</div>
+                    <div class="model-features">
+                        <span class="feature">SUV</span>
+                        <span class="feature">Petrol</span>
+                        <span class="feature">5 Seater</span>
+                        <span class="feature">Sporty Design</span>
+                    </div>
+                    <p>The Seltos X-Line offers enhanced styling and premium features for a distinctive presence.</p>
+                    <button class="book-btn" data-model="Seltos X-Line"><i class="fas fa-calendar-check"></i> Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>About Kia Motors</h2>
+                <p>Kia Corporation, founded in 1944, is South Korea's second-largest automobile manufacturer. With a vision to create sustainable mobility solutions, Kia has become a global leader in automotive innovation.</p>
+                <p>Kia's philosophy of "Movement that inspires" reflects our commitment to creating vehicles that not only transport people but also inspire them through design, performance, and technology.</p>
+                <p>With a presence in over 190 countries, Kia continues to push boundaries with advanced safety features, eco-friendly technologies, and customer-centric services that redefine the driving experience.</p>
+                <button class="cta-button">Learn More</button>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kia Manufacturing">
+            </div>
+        </div>
+    </section>
+
+    <!-- Plant Section -->
+    <section class="plant-section" id="plant">
+        <div class="plant-container">
+            <div class="plant-image">
+                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kia Plant in Penukonda">
+            </div>
+            <div class="plant-content">
+                <h2>Kia India Manufacturing Plant</h2>
+                <p>Kia's state-of-the-art manufacturing facility in Penukonda, Andhra Pradesh, represents one of the most advanced automotive plants in India. Spread over 536 acres, this facility has an annual production capacity of 300,000 vehicles.</p>
+                <p>The plant incorporates Industry 4.0 technologies, including over 450 robots and advanced automation systems, ensuring precision manufacturing and consistent quality across all Kia models produced in India.</p>
+                <p>Kia's commitment to 'Make in India' is evident through this facility, which not only serves the domestic market but also exports vehicles to over 70 countries worldwide, strengthening India's position as a global automotive manufacturing hub.</p>
+                <button class="cta-button">Visit Virtual Tour</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="support-section" id="support">
+        <div class="support-container">
+            <div class="section-title">
+                <h2>Customer Support</h2>
+                <p>We're committed to providing exceptional service and support throughout your ownership journey</p>
+            </div>
+            <div class="support-grid">
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Customer Care</h3>
+                    <p>Round-the-clock assistance for all your queries and concerns</p>
+                </div>
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Service & Maintenance</h3>
+                    <p>Expert service technicians and genuine parts for your Kia</p>
+                </div>
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Warranty & Assurance</h3>
+                    <p>Comprehensive warranty packages for complete peace of mind</p>
+                </div>
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Dealer Locator</h3>
+                    <p>Find your nearest Kia dealership for sales and service</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Kia Motors</h3>
+                <p>Driving innovation and inspiring movement through cutting-edge automotive technology and design.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#models">Models</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#plant">Manufacturing</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Popular Models</h3>
+                <ul>
+                    <li><a href="#">Kia Seltos</a></li>
+                    <li><a href="#">Kia Sonet</a></li>
+                    <li><a href="#">Kia Carens</a></li>
+                    <li><a href="#">Kia EV6</a></li>
+                    <li><a href="#">Kia Carnival</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Kia Motors India, Penukonda, AP</li>
+                    <li><i class="fas fa-phone"></i> 1800-209-2020</li>
+                    <li><i class="fas fa-envelope"></i> customer-care@kia.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Kia Motors India. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Book Your Kia</h2>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="model">Select Model</label>
+                    <select id="model" name="model" required>
+                        <option value="">Choose a model</option>
+                        <option value="Seltos">Kia Seltos</option>
+                        <option value="Sonet">Kia Sonet</option>
+                        <option value="Carens">Kia Carens</option>
+                        <option value="EV6">Kia EV6</option>
+                        <option value="Carnival">Kia Carnival</option>
+                        <option value="Seltos X-Line">Kia Seltos X-Line</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="preferred-date">Preferred Test Drive Date</label>
+                    <input type="date" id="preferred-date" name="preferred-date" required>
+                </div>
+                <button type="submit" class="submit-btn">Submit Booking Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modal = document.getElementById('bookingModal');
+        const bookButtons = document.querySelectorAll('.book-btn');
+        const closeModal = document.querySelector('.close-modal');
+        const modelSelect = document.getElementById('model');
+
+        // Open modal when book button is clicked
+        bookButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modelName = button.getAttribute('data-model');
+                modelSelect.value = modelName;
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close modal when X is clicked
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside the modal content
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your booking request! Our representative will contact you shortly.');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.getElementById('bookingForm').reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a, .hero-buttons .cta-button').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.model-card, .support-card, .about-content, .plant-content').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
+
